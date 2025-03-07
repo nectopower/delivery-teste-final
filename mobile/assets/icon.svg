@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg width="1024" height="1024" viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1024" height="1024" fill="#FF4500" rx="200" ry="200"/>
+  <g transform="translate(212, 212) scale(0.6)">
+    <!-- Plate/dish icon -->
+    <circle cx="500" cy="500" r="400" fill="white"/>
+    <circle cx="500" cy="500" r="320" fill="#FF4500"/>
+    <circle cx="500" cy="500" r="240" fill="white"/>
+    
+    <!-- Fork and knife -->
+    <rect x="200" y="300" width="40" height="400" rx="20" fill="white" transform="rotate(-30, 200, 300)"/>
+    <rect x="800" y="300" width="40" height="400" rx="20" fill="white" transform="rotate(30, 800, 300)"/>
+  </g>
+</svg>

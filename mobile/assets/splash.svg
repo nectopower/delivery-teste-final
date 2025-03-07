@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg width="1242" height="2436" viewBox="0 0 1242 2436" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1242" height="2436" fill="#FF4500"/>
+  <g transform="translate(321, 1018)">
+    <!-- Plate/dish icon -->
+    <circle cx="300" cy="300" r="250" fill="white"/>
+    <circle cx="300" cy="300" r="200" fill="#FF4500"/>
+    <circle cx="300" cy="300" r="150" fill="white"/>
+    
+    <!-- Fork and knife -->
+    <rect x="120" y="180" width="25" height="250" rx="10" fill="white" transform="rotate(-30, 120, 180)"/>
+    <rect x="480" y="180" width="25" height="250" rx="10" fill="white" transform="rotate(30, 480, 180)"/>
+    
+    <!-- Food delivery text -->
+    <text x="300" y="310" font-family="Arial" font-size="50" text-anchor="middle" fill="white" font-weight="bold">FOOD</text>
+    <text x="300" y="380" font-family="Arial" font-size="50" text-anchor="middle" fill="white" font-weight="bold">DELIVERY</text>
+  </g>
+</svg>

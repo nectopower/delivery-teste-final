@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Expo QR Code</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 20px;
+      text-align: center;
+    }
+    .qr-container {
+      margin: 30px auto;
+      padding: 20px;
+      border: 1px solid #ccc;
+      border-radius: 10px;
+      max-width: 400px;
+    }
+    .instructions {
+      text-align: left;
+      margin: 20px auto;
+      max-width: 600px;
+    }
+    pre {
+      background-color: #f5f5f5;
+      padding: 10px;
+      border-radius: 5px;
+      overflow-x: auto;
+      text-align: left;
+    }
+  </style>
+</head>
+<body>
+  <h1>Expo QR Code para Teste no Dispositivo</h1>
+  
+  <div class="qr-container">
+    <h2>Escaneie este QR Code</h2>
+    <div id="qrcode"></div>
+    <p>ou use o link de exp:</p>
+    <pre id="expUrl">exp://127.0.0.1:8081</pre>
+  </div>
+  
+  <div class="instructions">
+    <h2>Instruções:</h2>
+    <ol>
+      <li>Instale o aplicativo <strong>Expo Go</strong> no seu dispositivo móvel (disponível na App Store ou Google Play)</li>
+      <li>Certifique-se de que seu dispositivo móvel e computador estejam na <strong>mesma rede Wi-Fi</strong></li>
+      <li>Abra o aplicativo Expo Go e escaneie o QR code acima</li>
+      <li>Alternativamente, toque em "Scan QR Code" no Expo Go e escaneie o código</li>
+      <li>Se o QR code não funcionar, você pode inserir manualmente o URL exp:// mostrado acima</li>
+    </ol>
+    <p><strong>Nota:</strong> Se você estiver tendo problemas de conexão, verifique se:</p>
+    <ul>
+      <li>Seu dispositivo e computador estão na mesma rede</li>
+      <li>Seu firewall não está bloqueando a conexão</li>
+      <li>Você substituiu o IP 127.0.0.1 pelo IP real do seu computador na rede local</li>
+    </ul>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/qrcode-generator@1.4.4/qrcode.min.js"></script>
+  <script>
+    // Função para obter o IP da máquina na rede local
+    async function getLocalIP() {
+      try {
+        const response = await fetch('/api/get-local-ip');
+        const data = await response.json();
+        return data.ip;
+      } catch (error) {
+        console.error('Erro ao obter IP local:', error);
+        return '192.168.1.x'; // IP exemplo caso falhe
+      }
+    }
+
+    // Função para gerar o QR code
+    function generateQRCode(text) {
+      const typeNumber = 0;
+      const errorCorrectionLevel = 'L';
+      const qr = qrcode(typeNumber, errorCorrectionLevel);
+      qr.addData(text);
+      qr.make();
+      document.getElementById('qrcode').innerHTML = qr.createImgTag(5);
+    }
+
+    // Função para atualizar o URL do Expo
+    async function updateExpoUrl() {
+      // Tente obter o IP local, ou use localhost como fallback
+      const ip = await getLocalIP();
+      const port = '8081';
+      const expUrl = `exp://${ip}:${port}`;
+      
+      document.getElementById('expUrl').textContent = expUrl;
+      generateQRCode(expUrl);
+    }
+
+    // Inicializar a página
+    updateExpoUrl();
+  </script>
+</body>
+</html>
